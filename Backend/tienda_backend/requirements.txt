@@ -1,0 +1,8 @@
+fastapi
+uvicorn
+gunicorn
+python-dotenv
+pydantic
+pymysql
+paramiko
+reportlab

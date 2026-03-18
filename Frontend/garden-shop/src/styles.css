@@ -1,0 +1,94 @@
+@import "bootstrap/dist/css/bootstrap.min.css";
+@import "bootstrap-icons/font/bootstrap-icons.css";
+
+:root {
+  --garden-primary: #2d8c6e;
+  --garden-secondary: #1a5c47;
+  --garden-accent: #4db896;
+  --garden-dark: #0d1f1a;
+  --garden-light: #e8f5f0;
+  --garden-cyan: #00c9b1;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #0d1f1a;
+  color: #e8f5f0;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.btn-garden {
+  background: linear-gradient(135deg, var(--garden-primary), var(--garden-cyan));
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 10px 24px;
+  font-weight: 600;
+  transition: all 0.3s;
+}
+
+.btn-garden:hover {
+  background: linear-gradient(135deg, var(--garden-secondary), var(--garden-primary));
+  color: white;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(0, 201, 177, 0.3);
+}
+
+.card-garden {
+  background: #132b23;
+  border: 1px solid #2d8c6e33;
+  border-radius: 12px;
+  transition: all 0.3s;
+}
+
+.card-garden:hover {
+  border-color: var(--garden-cyan);
+  box-shadow: 0 4px 20px rgba(0, 201, 177, 0.15);
+  transform: translateY(-3px);
+}
+
+.text-garden { color: var(--garden-cyan); }
+.bg-garden { background-color: var(--garden-primary); }
+
+.navbar-garden {
+  background: linear-gradient(90deg, #0d1f1a, #132b23);
+  border-bottom: 1px solid #2d8c6e55;
+}
+
+.sidebar-garden {
+  background: #0a1a14;
+  border-right: 1px solid #2d8c6e33;
+  min-height: 100vh;
+}
+
+.form-control-garden {
+  background: #0d1f1a;
+  border: 1px solid #2d8c6e55;
+  color: #e8f5f0;
+  border-radius: 8px;
+}
+
+.form-control-garden:focus {
+  background: #0d1f1a;
+  border-color: var(--garden-cyan);
+  color: #e8f5f0;
+  box-shadow: 0 0 0 3px rgba(0, 201, 177, 0.15);
+}
+
+.table-garden {
+  color: #e8f5f0;
+}
+
+.table-garden thead {
+  background: #132b23;
+  color: var(--garden-cyan);
+}
+
+.table-garden tbody tr:hover {
+  background: #132b2388;
+}

@@ -1,0 +1,52 @@
+<div class="login-wrapper d-flex align-items-center justify-content-center min-vh-100">
+  <div class="login-card p-4 p-md-5">
+
+    <!-- Logo -->
+    <div class="text-center mb-4">
+      <div class="logo-icon mb-3">
+        <i class="bi bi-flower1"></i>
+      </div>
+      <h1 class="login-title">GardenShop</h1>
+      <p class="login-subtitle">Gestión de Pedidos</p>
+    </div>
+
+    <!-- Formulario -->
+    <div class="mb-3">
+      <label class="form-label text-garden">
+        <i class="bi bi-person me-1"></i> Usuario
+      </label>
+      <input
+        type="text"
+        class="form-control form-control-garden"
+        placeholder="Ingresa tu usuario"
+        [(ngModel)]="nombre"
+        (keyup.enter)="iniciarSesion()"
+      />
+    </div>
+
+    <div class="mb-4">
+      <label class="form-label text-garden">
+        <i class="bi bi-lock me-1"></i> Contraseña
+      </label>
+      <input
+        type="password"
+        class="form-control form-control-garden"
+        placeholder="Ingresa tu contraseña"
+        [(ngModel)]="password"
+        (keyup.enter)="iniciarSesion()"
+      />
+    </div>
+
+    <button
+      class="btn btn-garden w-100"
+      (click)="iniciarSesion()"
+      [disabled]="cargando">
+      @if (!cargando) {
+        <i class="bi bi-box-arrow-in-right me-2"></i>Iniciar Sesión
+      } @else {
+        <span class="spinner-border spinner-border-sm me-2"></span>Cargando...
+      }
+    </button>
+
+  </div>
+</div>

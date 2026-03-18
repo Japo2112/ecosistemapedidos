@@ -1,0 +1,37 @@
+<div class="sidebar-garden d-flex flex-column p-3" style="width:230px; min-height:calc(100vh - 56px)">
+
+  @if (authService.esAdmin()) {
+    <p class="sidebar-label">Administración</p>
+    <a routerLink="/admin/dashboard" routerLinkActive="active" class="sidebar-item">
+      <i class="bi bi-speedometer2"></i> Dashboard
+    </a>
+    <a routerLink="/admin/productos" routerLinkActive="active" class="sidebar-item">
+      <i class="bi bi-box-seam"></i> Productos
+    </a>
+    <a routerLink="/admin/usuarios" routerLinkActive="active" class="sidebar-item">
+      <i class="bi bi-people"></i> Usuarios
+    </a>
+    <a routerLink="/admin/roles" routerLinkActive="active" class="sidebar-item">
+      <i class="bi bi-shield"></i> Roles
+    </a>
+    <a routerLink="/admin/pedidos" routerLinkActive="active" class="sidebar-item">
+      <i class="bi bi-cart3"></i> Pedidos
+    </a>
+    <a routerLink="/admin/auditlog" routerLinkActive="active" class="sidebar-item">
+      <i class="bi bi-journal-text"></i> Auditoría
+    </a>
+    <hr class="border-secondary">
+  }
+
+  <p class="sidebar-label">Tienda</p>
+  <a routerLink="/catalogo" routerLinkActive="active" class="sidebar-item">
+    <i class="bi bi-grid"></i> Catálogo
+  </a>
+  <a routerLink="/carrito" routerLinkActive="active" class="sidebar-item">
+    <i class="bi bi-cart"></i> Carrito
+  </a>
+  <a routerLink="/mis-pedidos" routerLinkActive="active" class="sidebar-item">
+    <i class="bi bi-bag"></i> Mis Pedidos
+  </a>
+
+</div>

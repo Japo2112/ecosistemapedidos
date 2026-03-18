@@ -1,0 +1,31 @@
+.login-wrapper {
+  background: radial-gradient(ellipse at center, #132b23 0%, #0d1f1a 70%);
+}
+
+.login-card {
+  background: #132b23;
+  border: 1px solid #2d8c6e55;
+  border-radius: 16px;
+  width: 100%;
+  max-width: 420px;
+  box-shadow: 0 8px 40px rgba(0, 201, 177, 0.1);
+}
+
+.logo-icon {
+  font-size: 3rem;
+  color: #00c9b1;
+  line-height: 1;
+}
+
+.login-title {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #00c9b1;
+  margin: 0;
+}
+
+.login-subtitle {
+  color: #4db896;
+  font-size: 0.9rem;
+  margin: 0;
+}

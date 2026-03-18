@@ -1,0 +1,8 @@
+nav {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: linear-gradient(90deg, #0d1f1a, #132b23);
+  border-bottom: 1px solid #2d8c6e55;
+  height: 56px;
+}

@@ -1,0 +1,149 @@
+<app-navbar />
+
+<div class="d-flex">
+  <app-sidebar />
+
+  <div class="flex-grow-1 p-4">
+
+    <h2 class="text-garden mb-4">
+      <i class="bi bi-cart3 me-2"></i>Gestión de Pedidos
+    </h2>
+
+    <!-- Filtros -->
+    <div class="card-garden p-3 mb-4 d-flex gap-3 align-items-center flex-wrap">
+      <select class="form-control form-control-garden" style="max-width:160px" [(ngModel)]="filtro.estado">
+        <option value="">Todos los estados</option>
+        <option value="CREADO">CREADO</option>
+        <option value="PAGADO">PAGADO</option>
+        <option value="ENVIADO">ENVIADO</option>
+        <option value="CANCELADO">CANCELADO</option>
+      </select>
+      <input type="datetime-local" class="form-control form-control-garden" style="max-width:220px"
+        [(ngModel)]="filtro.fechaInicio"/>
+      <input type="datetime-local" class="form-control form-control-garden" style="max-width:220px"
+        [(ngModel)]="filtro.fechaFin"/>
+      <button class="btn btn-garden" (click)="cargarPedidos()">
+        <i class="bi bi-search me-1"></i>Buscar
+      </button>
+    </div>
+
+    <div class="row g-4">
+
+      <!-- Lista de pedidos -->
+      <div class="col-md-6">
+        @if (cargando) {
+          <div class="text-center py-5">
+            <div class="spinner-border text-garden"></div>
+          </div>
+        } @else {
+          <div class="card-garden overflow-hidden">
+            <table class="table table-garden mb-0">
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>Cliente</th>
+                  <th>Total</th>
+                  <th>Estado</th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody>
+                @for (p of pedidos; track p.id_pedido) {
+                  <tr [class.table-active]="pedidoSeleccionado?.id_pedido === p.id_pedido">
+                    <td>{{ p.id_pedido }}</td>
+                    <td>{{ p.nombre }}</td>
+                    <td>Q{{ p.total }}</td>
+                    <td><span class="badge" [class]="getBadgeClass(p.estado)">{{ p.estado }}</span></td>
+                    <td>
+                      <button class="btn btn-sm btn-outline-info" (click)="verDetalle(p)">
+                        <i class="bi bi-eye"></i>
+                      </button>
+                    </td>
+                  </tr>
+                } @empty {
+                  <tr>
+                    <td colspan="5" class="text-center text-secondary py-4">
+                      No hay pedidos.
+                    </td>
+                  </tr>
+                }
+              </tbody>
+            </table>
+          </div>
+        }
+      </div>
+
+      <!-- Detalle del pedido -->
+      <div class="col-md-6">
+        @if (pedidoSeleccionado) {
+          <div class="card-garden p-4">
+            <div class="d-flex justify-content-between align-items-center mb-3">
+              <h5 class="text-garden mb-0">
+                Pedido #{{ pedidoSeleccionado.id_pedido }}
+                <span class="badge ms-2" [class]="getBadgeClass(pedidoSeleccionado.estado)">
+                  {{ pedidoSeleccionado.estado }}
+                </span>
+              </h5>
+              <button class="btn btn-sm btn-outline-secondary" (click)="cerrarDetalle()">
+                <i class="bi bi-x-lg"></i>
+              </button>
+            </div>
+
+            <p class="text-secondary mb-1"><i class="bi bi-person me-1"></i>{{ pedidoSeleccionado.nombre }}</p>
+            <p class="text-secondary mb-3"><i class="bi bi-envelope me-1"></i>{{ pedidoSeleccionado.email }}</p>
+
+            @if (cargandoDetalle) {
+              <div class="text-center py-3">
+                <div class="spinner-border spinner-border-sm text-garden"></div>
+              </div>
+            } @else {
+              <table class="table table-garden table-sm mb-3">
+                <thead>
+                  <tr>
+                    <th>Producto</th>
+                    <th>Cant.</th>
+                    <th>Precio</th>
+                    <th>Subtotal</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  @for (d of detallePedido; track d.id_detalle) {
+                    <tr>
+                      <td>{{ d.producto }}</td>
+                      <td>{{ d.cantidad }}</td>
+                      <td>Q{{ d.precio_unit }}</td>
+                      <td>Q{{ d.subtotal }}</td>
+                    </tr>
+                  }
+                </tbody>
+                <tfoot>
+                  <tr>
+                    <td colspan="3" class="text-end fw-bold text-garden">Total:</td>
+                    <td class="fw-bold text-garden">Q{{ pedidoSeleccionado.total }}</td>
+                  </tr>
+                </tfoot>
+              </table>
+            }
+
+            @if (pedidoSeleccionado.estado === 'CREADO') {
+              <div class="d-flex gap-2">
+                <button class="btn btn-garden btn-sm" (click)="confirmar(pedidoSeleccionado)">
+                  <i class="bi bi-check-circle me-1"></i>Confirmar
+                </button>
+                <button class="btn btn-outline-danger btn-sm" (click)="cancelar(pedidoSeleccionado)">
+                  <i class="bi bi-x-circle me-1"></i>Cancelar
+                </button>
+              </div>
+            }
+          </div>
+        } @else {
+          <div class="card-garden p-4 text-center text-secondary">
+            <i class="bi bi-cart3 fs-3 d-block mb-2"></i>
+            Selecciona un pedido para ver el detalle.
+          </div>
+        }
+      </div>
+
+    </div>
+  </div>
+</div>
