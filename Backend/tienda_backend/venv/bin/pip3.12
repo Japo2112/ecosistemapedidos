@@ -1,6 +1,4 @@
-#!/bin/sh
-'''exec' "/home/alejo/Escritorio/Proyecto_Sistemas _Operativos_2/Backend/tienda_backend/venv/bin/python3" "$0" "$@"
-' '''
+#!/home/jonathanaquino/Documentos/ecosistemapedidos-main/Backend/tienda_backend/venv/bin/python3
 # -*- coding: utf-8 -*-
 import re
 import sys
