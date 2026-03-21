@@ -1,0 +1,65 @@
+<app-navbar />
+
+<div class="d-flex">
+  <app-sidebar />
+
+  <div class="flex-grow-1 p-4">
+
+    <div class="d-flex justify-content-between align-items-center mb-4">
+      <h2 class="text-garden mb-0">
+        <i class="bi bi-grid me-2"></i>Catálogo de Productos
+      </h2>
+    </div>
+
+    <!-- Búsqueda -->
+    <div class="card-garden p-3 mb-4 d-flex gap-3 align-items-center">
+      <input type="text" class="form-control form-control-garden" style="max-width:350px"
+        placeholder="Buscar producto..." [(ngModel)]="busqueda" (keyup.enter)="cargarProductos()"/>
+      <button class="btn btn-garden" (click)="cargarProductos()">
+        <i class="bi bi-search me-1"></i>Buscar
+      </button>
+    </div>
+
+    @if (cargando) {
+      <div class="text-center py-5">
+        <div class="spinner-border text-garden"></div>
+      </div>
+    } @else {
+      <div class="row g-4">
+        @for (p of productos; track p.id_Producto) {
+          <div class="col-md-4 col-lg-3">
+            <div class="card-garden p-3 h-100 d-flex flex-column">
+              <div class="text-center mb-3">
+                <i class="bi bi-box-seam" style="font-size:3rem; color:#2d8c6e;"></i>
+              </div>
+              <code class="text-garden small mb-1">{{ p.sku }}</code>
+              <h6 class="fw-500 mb-1">{{ p.nombre }}</h6>
+              <p class="text-secondary small mb-2" style="flex:1">
+                {{ p.descripcion || 'Sin descripción.' }}
+              </p>
+              <div class="d-flex justify-content-between align-items-center mb-2">
+                <span class="text-garden fw-bold fs-5">Q{{ p.precio }}</span>
+                <span class="badge bg-secondary">Stock: {{ p.stock }}</span>
+              </div>
+              @if (p.stock > 0) {
+                <button class="btn btn-garden btn-sm w-100" (click)="agregarAlCarrito(p)">
+                  <i class="bi bi-cart-plus me-1"></i>Agregar al carrito
+                </button>
+              } @else {
+                <button class="btn btn-secondary btn-sm w-100" disabled>
+                  Sin stock
+                </button>
+              }
+            </div>
+          </div>
+        } @empty {
+          <div class="col-12 text-center text-secondary py-5">
+            <i class="bi bi-inbox fs-1 d-block mb-3"></i>
+            No hay productos disponibles.
+          </div>
+        }
+      </div>
+    }
+
+  </div>
+</div>

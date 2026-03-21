@@ -1,0 +1,84 @@
+<app-navbar />
+
+<div class="d-flex">
+  <app-sidebar />
+
+  <div class="flex-grow-1 p-4">
+
+    <div class="d-flex justify-content-between align-items-center mb-4">
+      <h2 class="text-garden mb-0">
+        <i class="bi bi-shield me-2"></i>Gestión de Roles
+      </h2>
+      <button class="btn btn-garden" (click)="abrirCrear()">
+        <i class="bi bi-plus-lg me-1"></i>Nuevo Rol
+      </button>
+    </div>
+
+    @if (modoFormulario) {
+      <div class="card-garden p-4 mb-4">
+        <h5 class="text-garden mb-3">
+          {{ modoFormulario === 'crear' ? 'Nuevo Rol' : 'Editar Rol' }}
+        </h5>
+        <div class="row g-3">
+          <div class="col-md-4">
+            <label class="form-label text-garden">Nombre del Rol</label>
+            <input type="text" class="form-control form-control-garden"
+              [(ngModel)]="form.nombre" placeholder="Ej: VENDEDOR" />
+          </div>
+        </div>
+        <div class="d-flex gap-2 mt-3">
+          <button class="btn btn-garden" (click)="guardar()">
+            <i class="bi bi-check-lg me-1"></i>Guardar
+          </button>
+          <button class="btn btn-outline-secondary" (click)="cancelar()">
+            <i class="bi bi-x-lg me-1"></i>Cancelar
+          </button>
+        </div>
+      </div>
+    }
+
+    @if (cargando) {
+      <div class="text-center py-5">
+        <div class="spinner-border text-garden"></div>
+      </div>
+    } @else {
+      <div class="card-garden overflow-hidden">
+        <table class="table table-garden mb-0">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Nombre</th>
+              <th>Acciones</th>
+            </tr>
+          </thead>
+          <tbody>
+            @for (r of roles; track r.id_Role) {
+              <tr>
+                <td>{{ r.id_Role }}</td>
+                <td><span class="badge bg-garden px-3 py-2">{{ r.nombre }}</span></td>
+                <td>
+                  <div class="d-flex gap-2">
+                    <button class="btn btn-sm btn-outline-info" (click)="abrirEditar(r)" title="Editar">
+                      <i class="bi bi-pencil"></i>
+                    </button>
+                    <button class="btn btn-sm btn-outline-danger" (click)="eliminar(r)" title="Eliminar">
+                      <i class="bi bi-trash"></i>
+                    </button>
+                  </div>
+                </td>
+              </tr>
+            } @empty {
+              <tr>
+                <td colspan="3" class="text-center text-secondary py-4">
+                  <i class="bi bi-shield fs-3 d-block mb-2"></i>
+                  No hay roles registrados.
+                </td>
+              </tr>
+            }
+          </tbody>
+        </table>
+      </div>
+    }
+
+  </div>
+</div>
