@@ -7,7 +7,8 @@ import { Observable } from 'rxjs';
 })
 export class PedidosService {
 
-  private apiUrl = 'http://localhost:5229/api/pedidos';
+  // ✅ URL relativa — Nginx hace el proxy hacia el backend en :8000
+  private apiUrl = '/api/pedidos';
 
   constructor(private http: HttpClient) {}
 

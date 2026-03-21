@@ -7,7 +7,8 @@ import { Observable } from 'rxjs';
 })
 export class AuthService {
 
-  private apiUrl = 'http://localhost:5229/api';
+  // ✅ URL relativa — Nginx redirige /api/* al backend en :8000
+  private apiUrl = '/api';
 
   constructor(private http: HttpClient) {}
 

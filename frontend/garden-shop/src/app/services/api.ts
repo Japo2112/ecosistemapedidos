@@ -6,11 +6,12 @@ import { HttpClient } from '@angular/common/http';
 })
 export class ApiService {
 
-  private baseUrl = 'http://34.60.125.75:8000/api';
+  // ✅ Sin IP hardcodeada — Nginx hace el proxy hacia el backend
+  private baseUrl = '/api';
 
   constructor(private http: HttpClient) {}
 
   getProductos() {
-  return this.http.get(`/api/productos/listar`);
-}
+    return this.http.get(`${this.baseUrl}/productos/listar`);
+  }
 }
